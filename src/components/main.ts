@@ -1,5 +1,6 @@
 import { PokeApi } from '../services/poke.api.js';
 import { Component } from './component.js';
+import { Details } from './delails.js';
 // import { Details } from './delails.js';
 
 export class Main extends Component {
@@ -36,11 +37,11 @@ export class Main extends Component {
     this.pokemons.results.forEach((item: any) => {
       pokemonArr.push(item.url);
     });
-
+    // console.log(this.pokemons);
     this.pokemonsInfo = await Promise.all(
-      pokemonArr.map((url: string) => fetch(url).then((r) => r.json())) //map es un metodo de arrays que devuelve una copia de un array
+      pokemonArr.map((url: string) => fetch(url).then((r) => r.json()))
     );
-    //this.PreviousFetch(); SI SE PONE DA ERROR
+    // console.log(this.pokemonsInfo[1].abilities);
     this.NextFetch();
     this.manageComponent();
   }
@@ -105,8 +106,8 @@ export class Main extends Component {
       this.template += `<div class="poke"><h2>${pokemon.species.name}</h2>`;
       this.template += `<img src="${pokemon.sprites.front_default}" alt="" width="100"></div>`;
     });
-    this.template += `<button class="previous" type="submit">Previous</button>
-        <button class="next" type="submit">Next</button>`;
+    this.template += `<div class="buttons"><button class="previous" type="submit">Previous</button>
+        <button class="next" type="submit">Next</button></div>`;
     return this.template;
   }
 }
