@@ -1,5 +1,6 @@
 import { PokeApi } from '../services/poke.api.js';
 import { Component } from './component.js';
+// import { Details } from './delails.js';
 
 export class Main extends Component {
   template!: string;
@@ -66,13 +67,12 @@ export class Main extends Component {
       pokemonArrPrevious.push(item.url);
     });
 
-    this.pokemonsInfoNext = await Promise.all(
+    this.pokemonsInfoPrevious = await Promise.all(
       pokemonArrPrevious.map((url: string) => fetch(url).then((r) => r.json()))
     );
   }
 
   manageComponent() {
-    // this.createArrayOfPromises();
     this.template = this.createTemplate();
     this.render(this.selector, this.template);
 
@@ -93,6 +93,9 @@ export class Main extends Component {
       this.PreviousFetch();
       this.manageComponent();
     });
+    // document.querySelector('img')?.addEventListener('click', () => {
+    //   new Details('main');
+    // });
   }
 
   createTemplate() {
