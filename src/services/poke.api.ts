@@ -9,6 +9,14 @@ export class PokeApi {
   getPoke(): Promise<Array<PokeApi>> {
     return fetch(this.urlDefault).then((response) => response.json());
   }
+
+  getNextPoke(nextUrl: any) {
+    return fetch(nextUrl).then((response) => response.json());
+  }
+
+  getPreviousPoke(previousUrl: any) {
+    return fetch(previousUrl).then((response) => response.json());
+  }
 }
 /*export class PokeApi {
   url: string;
